@@ -283,31 +283,29 @@ def analytics():
     # ##########################
     email = session.get('email')
     data = mongo.db.tasks.find({'email': email}, {'category'})
-    if data is not None:
-        data_list = list(data)
-        data = pd.DataFrame(data_list)
+    data_list = list(data)
+    data = pd.DataFrame(data_list)
 
-        # Create a histogram using Plotly Express
-        fig = px.histogram(data, x='category', nbins=3, title="Histogram Example")
+    # Create a histogram using Plotly Express
+    fig = px.histogram(data, x='category', nbins=3, title="Histogram Example")
 
-        # You can customize the layout and appearance of the histogram, e.g., titles, labels, colors, etc.
-        fig.update_layout(
-            xaxis_title="Categories",
-            yaxis_title="Frequency",
-            font=dict(family="Arial", size=18, color="black"),
-            paper_bgcolor="white",
-            plot_bgcolor="lightgray",
-            width=550,
-            height=550,
-        )
+    # You can customize the layout and appearance of the histogram, e.g., titles, labels, colors, etc.
+    fig.update_layout(
+        xaxis_title="Categories",
+        yaxis_title="Frequency",
+        font=dict(family="Arial", size=18, color="black"),
+        paper_bgcolor="white",
+        plot_bgcolor="lightgray",
+        width=550,
+        height=550,
+    )
 
-        # Customize the y-axis ticks to show integer values
-        fig.update_yaxes(dtick=1)
+    # Customize the y-axis ticks to show integer values
+    fig.update_yaxes(dtick=1)
 
-        # Convert the Plotly figure to HTML
-        chart_html = fig.to_html(full_html=False)
-        return render_template('analytics.html', chart_html=chart_html, title='Analytics')
-    return render_template('dashboard.html')
+    # Convert the Plotly figure to HTML
+    chart_html = fig.to_html(full_html=False)
+    return render_template('analytics.html', chart_html=chart_html, title='Analytics')
 
 
 @app.route("/about_us")
