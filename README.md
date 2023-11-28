@@ -4,13 +4,15 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Build Status](https://app.travis-ci.com/atharva1996/Simplii.svg?branch=main)](https://app.travis-ci.com/nisarg210/Simplii)
-![Code Coverage](https://github.com/nisarg210/Simplii/blob/main/src/coverage.svg)
-![github workflow](https://github.com/nisarg210/Simplii/actions/workflows/style_checker.yml/badge.svg)
-![github workflow](https://github.com/nisarg210/Simplii/actions/workflows/syntax_checker.yml/badge.svg)
-![github workflow](https://github.com/nisarg210/Simplii/actions/workflows/close_as_a_feature.yml/badge.svg)
+[![codecov](https://codecov.io/gh/aditicsalunkhe/Simplii-Group74-2023/graph/badge.svg?token=6ROHQ5GMQ7)](https://codecov.io/gh/aditicsalunkhe/Simplii-Group74-2023)
+![github workflow](https://github.com/aditicsalunkhe/Simplii-Group74-2023/actions/workflows/style_checker.yml/badge.svg)
+![github workflow](https://github.com/aditicsalunkhe/Simplii-Group74-2023/actions/workflows/syntax_checker.yml/badge.svg)
+![github workflow](https://github.com/aditicsalunkhe/Simplii-Group74-2023/actions/workflows/close_as_a_feature.yml/badge.svg)
+![github workflow](https://github.com/aditicsalunkhe/Simplii-Group74-2023/actions/workflows/code_cov.yml/badge.svg)
+![github workflow](https://github.com/aditicsalunkhe/Simplii-Group74-2023/actions/workflows/unit_test.yml/badge.svg)
 
 ## Link to Demonstration Video of the Project: 
-https://drive.google.com/file/d/1rApSm9mfYJVBAC05cEsd61l3WbkrtomQ/view?usp=sharing
+https://drive.google.com/file/d/10ysKfwcecwr28sYiTgUISVuCjco6RFj2/view?usp=sharing
 
 # Introduction
 <h3>Having trouble in keeping track of your daily tasks and managing them? </h3>
@@ -79,34 +81,26 @@ https://github.com/aditicsalunkhe/Simplii-Group74-2023/assets/24827205/8bbf7225-
 
 ## Core Functionalities of the Application:
  
- ## Register:
+  **1. Register and login:** <br>
+  <img src="/static/images/register_and_login.gif" width="70%" height="70%"/>   <br>
  
+  **2. Add a task:** <br>
+  <img src="/static/images/add_task.gif" width="70%" height="70%"/>  <br>
 
-https://user-images.githubusercontent.com/89509351/144703691-aa8a10cd-db81-48f9-bc21-467f82a53378.mp4
+  **3. Tasks dashboard:** <br>
+  <img src="/static/images/view_tasks.gif" width="70%" height="70%"/>  <br>
 
+  **4. Friends:** <br>
+  <img src="/static/images/friends.gif" width="70%" height="70%"/>  <br>
 
- 
- ## Login:
- https://user-images.githubusercontent.com/89509351/144703694-09252613-a2f7-4dff-a574-b4a20cb69fd4.mp4
- 
- ## Adding Tasks:
- 
+  **5. Analytics:** <br>
+  <img src="/static/images/analytics.gif" width="70%" height="70%"/>  <br>
 
-https://user-images.githubusercontent.com/89509351/144703705-0628f2a2-8004-442c-8612-a5de40de92be.mp4
+  **6. Forum:** <br>
+  <img src="/static/images/forum.gif" width="70%" height="70%"/>  <br>
 
-
- 
- ## Task Recommendation and Display:
- 
- 
-
-https://user-images.githubusercontent.com/89509351/144703718-a2f478e3-b4ea-4fa2-a784-9a3b5c335a57.mp4
- 
- 
- ## Modifying the tasks - Updating and Deleting:
- 
-
-https://user-images.githubusercontent.com/89509351/144703727-e757e3e4-3776-470f-b08f-516593cb861e.mp4
+  **7. Reward:** <br>
+  <img src="/static/images/reward.gif" width="70%" height="70%"/>  <br>
 
 ## Successful Usecases
 
@@ -169,7 +163,8 @@ planned to do in future.
  Step 5:
     Open the URL in your browser:  
       http://127.0.0.1:5000/
-      
+
+ While executing testing, uncomment the unit_test.py and test_application.py in the test subdirectory.
                                                                                                                                                   
  ## Delta
 1. Front end layout re-design and implementation. <br>
