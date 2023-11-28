@@ -837,24 +837,56 @@ def completeTask():
     if session.get('email'):
         email = session.get('email')
         task = request.form.get('task')
-        actualhours = request.form.get('actualhours')
-        print(actualhours)
-        print("Actual hours taken", int(actualhours))
-        mongo.db.tasks.update_one({'email': email, 'taskname': task}, {
-                                    '$set': {'completed': True, 'actualhours': int(actualhours)}})
-        tasks = mongo.db.tasks.find({'taskname': task}, {'completed'})
-        total_tasks = 0
-        total_completed_tasks = 0
-        for tsk in tasks:
-            if tsk['completed']:
-                total_completed_tasks += 1
-            total_tasks += 1
+        is_completed = mongo.db.tasks.find_one(
+            {'taskname': task, 'email': email}, {'completed'})
+        print(is_completed)
+        if is_completed:
+            flash('Task already completed!', 'danger')
+        else:
+            actualhours = request.form.get('actualhours')
+            difficulty = request.form.get('difficulty')
 
-        mongo.db.tasks.update_many({'taskname': task}, {
-                                    '$set': {'progress': round(total_completed_tasks/total_tasks, 2)*100}})
+    difficulty_multiplier = 1  # Default for Easy
+    if difficulty == 'Medium':
+        difficulty_multiplier = 2
+    elif difficulty == 'Hard':
+        difficulty_multiplier = 3
 
-        flash(f' {task} Task Completed!', 'success')
-        return 'success'
+    print("Actual hours taken", int(actualhours))
+
+    # Update task completion status and actual hours
+    mongo.db.tasks.update_one({'email': email, 'taskname': task}, {
+                            '$set': {'completed': True, 'actualhours': int(actualhours)}})
+
+    # Retrieve the current rewards from the database
+    user_data = mongo.db.users.find_one({'email': email})
+    current_rewards = user_data.get('rewards', 0)
+
+    # Update rewards based on completed tasks and difficulty level
+    total_completed_tasks = mongo.db.tasks.count_documents(
+        {'email': email, 'completed': True})
+    new_rewards = total_completed_tasks * difficulty_multiplier
+
+    # Add the new rewards to the current total
+    total_rewards = current_rewards + new_rewards
+
+    # Update the rewards in the database
+    mongo.db.users.update_one({'email': email}, {'$set': {'rewards': total_rewards}})
+
+    tasks = mongo.db.tasks.find({'taskname': task}, {'completed'})
+    total_tasks = 0
+    total_completed_tasks = 0
+    for tsk in tasks:
+        if tsk['completed']:
+            total_completed_tasks += 1
+        total_tasks += 1
+
+            mongo.db.tasks.update_many({'taskname': task}, {
+                                       '$set': {'progress': round(total_completed_tasks/total_tasks, 2)*100}})
+
+            flash(f' {task} Task Completed!', 'success')
+    return redirect(url_for('home'))
+
 
 def is_integer(s):
     try:
